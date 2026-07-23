@@ -397,7 +397,6 @@
     renderInspection();
     renderReturnRules();
     initFaq();
-    initContactForm();
     initSmoothScroll();
     initBackToTop();
   });
