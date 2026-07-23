@@ -182,59 +182,7 @@
     </div>
   </section>
 
-  <!-- ========================== ФОРМА ОБРАЩЕНИЯ ========================= -->
-  <section class="section" id="contact" aria-labelledby="contact-title">
-    <div class="container">
-      <h2 class="section__title" id="contact-title">Не нашли ответ?</h2>
-      <p class="section__hint">Заполните форму — мы соберём текст обращения, скопируем его и предложим отправить в Telegram-бот.</p>
-
-      <form class="contact-form" id="contact-form" novalidate>
-        <div class="field">
-          <label for="f-name">Имя <span class="field__optional">(необязательно)</span></label>
-          <input type="text" id="f-name" name="name" autocomplete="name">
-        </div>
-        <div class="field">
-          <label for="f-phone">Телефон</label>
-          <input type="tel" id="f-phone" name="phone" required autocomplete="tel" inputmode="tel">
-        </div>
-        <div class="field">
-          <label for="f-plate">Госномер</label>
-          <input type="text" id="f-plate" name="plate" required autocomplete="off">
-        </div>
-        <div class="field">
-          <label for="f-column">Колонна</label>
-          <select id="f-column" name="column" required></select>
-        </div>
-        <div class="field">
-          <label for="f-topic">Тема</label>
-          <select id="f-topic" name="topic" required>
-            <option value="Менеджер">Менеджер</option>
-            <option value="Автомобиль">Автомобиль</option>
-            <option value="Деньги и баланс">Деньги и баланс</option>
-            <option value="Компенсация">Компенсация</option>
-            <option value="Штраф">Штраф</option>
-            <option value="Осмотр">Осмотр</option>
-            <option value="Другое">Другое</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-question">Вопрос</label>
-          <textarea id="f-question" name="question" rows="4" required></textarea>
-        </div>
-
-        <button type="submit" class="btn btn--primary btn--block">Сформировать обращение</button>
-        <p class="field__hint">Отправки с сайта пока нет: мы сформируем текст, скопируем его в буфер обмена и предложим отправить в Telegram-бот.</p>
-      </form>
-
-      <div class="contact-result" id="contact-result" hidden>
-        <p class="contact-result__status" id="contact-result-status" role="status" aria-live="polite"></p>
-        <pre class="contact-result__text" id="contact-result-text"></pre>
-        <a class="btn btn--accent btn--block" id="contact-telegram-btn" target="_blank" rel="noopener">Открыть Telegram-бот</a>
-      </div>
-    </div>
-  </section>
-
-</main>
+  </main>
 
 <footer class="site-footer">
   <div class="container">
