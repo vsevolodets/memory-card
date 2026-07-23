@@ -372,60 +372,7 @@
   }
 
   // ---------------------------------------------------------------------
-  // Форма обращения (без backend)
-  // ---------------------------------------------------------------------
-  function initContactForm() {
-    var columnSelect = qs("#f-column");
-    columnSelect.innerHTML = landingData.columns.map(function (c) {
-      return '<option value="' + escapeHtml(c.shortTitle) + '">' + escapeHtml(c.shortTitle) + "</option>";
-    }).join("");
 
-    var form = qs("#contact-form");
-    form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      var data = new FormData(form);
-      var name = (data.get("name") || "").toString().trim();
-      var phone = (data.get("phone") || "").toString().trim();
-      var plate = (data.get("plate") || "").toString().trim();
-      var column = (data.get("column") || "").toString().trim();
-      var topic = (data.get("topic") || "").toString().trim();
-      var question = (data.get("question") || "").toString().trim();
-
-      var lines = [
-        "Обращение водителя — Таксимания",
-        name ? "Имя: " + name : null,
-        "Телефон: " + phone,
-        "Госномер: " + plate,
-        "Колонна: " + column,
-        "Тема: " + topic,
-        "Вопрос: " + question,
-      ].filter(Boolean);
-      var text = lines.join("\n");
-
-      var resultBlock = qs("#contact-result");
-      var statusEl = qs("#contact-result-status");
-      var textEl = qs("#contact-result-text");
-      var tgBtn = qs("#contact-telegram-btn");
-
-      textEl.textContent = text;
-      tgBtn.href = landingData.links.telegramBot;
-      resultBlock.hidden = false;
-
-      copyToClipboard(text).then(function () {
-        statusEl.textContent = "Текст обращения скопирован. Откройте Telegram-бот и вставьте его в сообщение.";
-      }, function () {
-        statusEl.textContent = "Текст обращения сформирован. Скопируйте его вручную и отправьте в Telegram-бот.";
-      });
-
-      resultBlock.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-  }
-
-  // ---------------------------------------------------------------------
   // Back to top
   // ---------------------------------------------------------------------
   function initBackToTop() {
