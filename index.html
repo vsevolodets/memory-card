@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Памятка водителя — Таксимания</title>
+<meta name="description" content="Памятка водителя Таксимания: контакты менеджеров, правила перед выходом на линию, аренда и выплаты, штрафы, еженедельный осмотр и ответы на частые вопросы.">
+<meta name="theme-color" content="#131316">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="skipLink">Перейти к содержанию</a>
+
+<header class="site-header" id="top">
+  <div class="container site-header__inner">
+    <div class="site-header__brand">
+      <img class="site-header__logo" src="assets/logo.png" alt="Таксимания" width="48" height="74">
+      <span class="site-header__name">Таксимания</span>
+    </div>
+
+    <div class="lang-switch" id="lang-switch">
+      <button class="lang-switch__toggle" id="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+        <span id="lang-toggle-flag">🇷🇺</span>
+        <span id="lang-toggle-label">RU</span>
+        <svg class="lang-switch__chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+      </button>
+      <ul class="lang-switch__menu" id="lang-menu" role="menu">
+        <li role="none"><button role="menuitem" class="lang-opt" data-lang="ru" type="button">🇷🇺 Русский</button></li>
+        <li role="none"><button role="menuitem" class="lang-opt" data-lang="ky" type="button">🇰🇬 Кыргызча</button></li>
+        <li role="none"><button role="menuitem" class="lang-opt" data-lang="kk" type="button">🇰🇿 Қазақша</button></li>
+        <li role="none"><button role="menuitem" class="lang-opt" data-lang="tg" type="button">🇹🇯 Тоҷикӣ</button></li>
+        <li role="none"><button role="menuitem" class="lang-opt" data-lang="uz" type="button">🇺🇿 O'zbekcha</button></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<p class="lang-note" id="lang-note" hidden></p>
+
+<main id="main">
+
+  <!-- ============================= HERO ============================= -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <h1 class="hero__title" data-i18n="heroTitle">Памятка водителя</h1>
+      <p class="hero__subtitle" data-i18n="heroSubtitle">Всё необходимое для работы — в одном месте</p>
+      <p class="hero__lead" data-i18n="heroLead">Контакты менеджеров, еженедельный осмотр, правила работы, штрафы и ответы на частые вопросы.</p>
+
+      <div class="hero__actions">
+        <a href="#columns" class="btn btn--primary" data-scroll="columns">
+          <svg class="btn__icon" aria-hidden="true" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M16 11a4 4 0 1 0-8 0 4 4 0 0 0 8 0Zm-4-9C7 2 3 6.5 3 11c0 6 9 11 9 11s9-5 9-11c0-4.5-4-9-9-9Z"/></svg>
+          <span data-i18n="heroBtnManagers">Найти своих менеджеров</span>
+        </a>
+        <a href="#inspection" class="btn btn--secondary" data-scroll="inspection">
+          <svg class="btn__icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 2 3 4v18l6-2 6 2 6-2V2l-6 2-6-2Zm0 2.2 6 2v13.6l-6-2V4.2ZM4.5 5.6 8 4.4v13.7l-3.5 1.2V5.6ZM16 4.4l3.5 1.2v13.8L16 18.2V4.4Z"/></svg>
+          <span data-i18n="heroBtnInspection">Еженедельный осмотр</span>
+        </a>
+        <a href="https://t.me/taxi_mania_bot" class="btn btn--accent" target="_blank" rel="noopener">
+          <svg class="btn__icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21.8 4.6 3.4 11.5c-1 .4-1 1.7.1 2l4.4 1.4 1.7 5.2c.2.6.9.8 1.4.4l2.6-2.2 4.5 3.3c.6.5 1.6.1 1.8-.6l3.3-15.3c.2-1-.7-1.7-1.4-1.1ZM8.6 14l9.5-6.6c.3-.2.6.1.3.4l-7.9 7.4c-.3.3-.5.7-.6 1.1l-.3 2.3-1-4.6Z"/></svg>
+          <span data-i18n="heroBtnBot">Задать вопрос боту</span>
+        </a>
+      </div>
+      <p class="hero__bot-note" data-i18n="botNote">Бот доступен круглосуточно</p>
+    </div>
+  </section>
+
+  <!-- =========================== КОЛОННЫ ============================ -->
+  <section class="section" id="columns" aria-labelledby="columns-title">
+    <div class="container">
+      <h2 class="section__title" id="columns-title" data-i18n="titleColumns">Ваши менеджеры</h2>
+      <div class="fade-divider"></div>
+      <p class="section__hint" data-i18n="columnsHint">Выберите свою колонну, чтобы увидеть телефоны и график работы.</p>
+
+      <div class="column-picker" role="group" aria-label="Выбор колонны">
+        <!-- кнопки колонн рендерятся в script.js -->
+      </div>
+
+      <div class="managers-list" id="managers-list" aria-live="polite">
+        <p class="managers-list__placeholder" data-i18n="managersPlaceholder">Выберите колонну выше, чтобы увидеть контакты менеджеров.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ПЕРЕД ВЫХОДОМ НА ЛИНИЮ ==================== -->
+  <section class="section section--alt" id="checklist" aria-labelledby="checklist-title">
+    <div class="container">
+      <h2 class="section__title" id="checklist-title" data-i18n="titleChecklist">Перед выходом на линию</h2>
+      <div class="fade-divider"></div>
+      <ul class="checklist" id="checklist-list"></ul>
+      <div class="warning-box warning-box--glow" id="checklist-warning"></div>
+    </div>
+  </section>
+
+  <!-- ========================= АРЕНДА И ВЫПЛАТЫ ====================== -->
+  <section class="section" id="payments" aria-labelledby="payments-title">
+    <div class="container">
+      <h2 class="section__title" id="payments-title" data-i18n="titlePayments">Аренда и выплаты</h2>
+      <div class="fade-divider"></div>
+      <dl class="fact-list" id="payments-list"></dl>
+    </div>
+  </section>
+
+  <!-- ============================ ЗАРАБОТОК ========================== -->
+  <section class="section section--alt" id="earnings" aria-labelledby="earnings-title">
+    <div class="container">
+      <h2 class="section__title" id="earnings-title" data-i18n="titleEarnings">Как больше зарабатывать</h2>
+      <div class="fade-divider"></div>
+      <ul class="earnings-list" id="earnings-list"></ul>
+    </div>
+  </section>
+
+  <!-- ============================ ШТРАФЫ ============================= -->
+  <section class="section" id="fines" aria-labelledby="fines-title">
+    <div class="container">
+      <h2 class="section__title" id="fines-title" data-i18n="titleFines">Основные штрафы</h2>
+      <div class="fade-divider"></div>
+      <ul class="fines-list" id="fines-list"></ul>
+      <p class="section__note" id="fines-note"></p>
+      <div class="warning-box warning-box--glow" id="fines-warning"></div>
+    </div>
+  </section>
+
+  <!-- ========================= ЕЖЕНЕДЕЛЬНЫЙ ОСМОТР ==================== -->
+  <section class="section section--alt" id="inspection" aria-labelledby="inspection-title">
+    <div class="container">
+      <h2 class="section__title" id="inspection-title" data-i18n="titleInspection">Еженедельный осмотр автомобиля</h2>
+      <div class="fade-divider"></div>
+
+      <div class="inspection-card">
+        <div class="inspection-card__facts">
+          <div class="inspection-fact">
+            <span class="inspection-fact__label" data-i18n="factFrequency">Периодичность</span>
+            <span class="inspection-fact__value" id="inspection-frequency"></span>
+          </div>
+          <div class="inspection-fact">
+            <span class="inspection-fact__label" data-i18n="factTime">Время</span>
+            <span class="inspection-fact__value" id="inspection-time"></span>
+          </div>
+          <div class="inspection-fact">
+            <span class="inspection-fact__label" data-i18n="factAddress">Адрес</span>
+            <span class="inspection-fact__value" id="inspection-address"></span>
+          </div>
+          <div class="inspection-fact">
+            <span class="inspection-fact__label" data-i18n="factCoords">Координаты</span>
+            <span class="inspection-fact__value inspection-fact__value--mono" id="inspection-coords"></span>
+          </div>
+        </div>
+        <p class="inspection-card__note" id="inspection-note"></p>
+
+        <div class="map-wrap">
+          <div id="inspection-map" class="map" role="img" aria-label="Карта с местом еженедельного осмотра"></div>
+          <noscript>Для отображения карты включите JavaScript. Адрес: Нахимовский тоннель, парковка ГБУ «Гормост», координаты 55.663290, 37.620497.</noscript>
+          <div class="map-fallback" id="map-fallback" hidden>
+            <p data-i18n="mapFallbackText">Карта не загрузилась. Место осмотра:</p>
+            <p><strong>Нахимовский тоннель, парковка ГБУ «Гормост»</strong></p>
+            <p class="mono">55.663290, 37.620497</p>
+          </div>
+        </div>
+
+        <div class="inspection-card__actions">
+          <a class="btn btn--primary btn--block" id="route-btn" target="_blank" rel="noopener">
+            <svg class="btn__icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2 3 21h18L12 2Zm0 4.6 5.6 12.4H6.4L12 6.6Z"/></svg>
+            <span data-i18n="btnRoute">Построить маршрут</span>
+          </a>
+          <a class="btn btn--secondary btn--block" id="yandex-maps-btn" target="_blank" rel="noopener" data-i18n="btnYandexMaps">
+            Открыть в Яндекс Картах
+          </a>
+          <button class="btn btn--secondary btn--block" id="copy-coords-btn" type="button" data-i18n="btnCopyCoords">
+            Скопировать координаты
+          </button>
+        </div>
+        <p class="copy-toast" id="copy-toast" role="status" aria-live="polite" hidden data-i18n="toastCopied">Координаты скопированы</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= ВОЗВРАТ АВТОМОБИЛЯ ===================== -->
+  <section class="section" id="return" aria-labelledby="return-title">
+    <div class="container">
+      <h2 class="section__title" id="return-title" data-i18n="titleReturn">Возврат автомобиля</h2>
+      <div class="fade-divider"></div>
+      <ol class="rules-list" id="return-list"></ol>
+      <a href="https://t.me/taxi_mania_bot" class="btn btn--accent btn--block" target="_blank" rel="noopener" data-i18n="btnTelegramBot">
+        Написать в Telegram-бот
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ =============================== -->
+  <section class="section section--alt" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <h2 class="section__title" id="faq-title" data-i18n="titleFaq">Частые вопросы</h2>
+      <div class="fade-divider"></div>
+
+      <div class="faq-search">
+        <svg class="faq-search__icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.3-4.3m2.3-5.2a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <label class="visually-hidden" for="faq-search-input">Поиск по вопросам</label>
+        <input type="search" id="faq-search-input" placeholder="Найти вопрос…" data-i18n-placeholder="faqSearchPlaceholder" autocomplete="off">
+      </div>
+
+      <div class="faq-categories" id="faq-categories" role="group" aria-label="Категории вопросов"></div>
+
+      <div class="faq-list" id="faq-list"></div>
+
+      <p class="faq-empty" id="faq-empty" hidden data-i18n="faqEmpty">Ничего не найдено. Попробуйте изменить запрос или задайте вопрос боту.</p>
+    </div>
+  </section>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <img class="site-footer__logo" src="assets/logo.png" alt="" width="28" height="43">
+    <p data-i18n="footerCopyright">© Таксимания. Памятка водителя.</p>
+    <a href="https://t.me/taxi_mania_bot" target="_blank" rel="noopener" data-i18n="footerBotLabel">Telegram-бот @taxi_mania_bot</a>
+
+    <div class="footer-forms">
+      <p class="footer-forms__title" data-i18n="footerFormsTitle">Или заполните заявку онлайн — без бота:</p>
+      <a class="footer-forms__link" href="https://forms.yandex.ru/cloud/6a60be43068ff0333cf34fc7" target="_blank" rel="noopener" data-i18n="formDeposit">Заявка на возврат депозита</a>
+      <a class="footer-forms__link" href="https://forms.yandex.ru/cloud/6a60bc7502848f2fd622f438" target="_blank" rel="noopener" data-i18n="formCompensation">Заявка на компенсацию</a>
+      <a class="footer-forms__link" href="https://forms.yandex.ru/cloud/6a60b6b084227c27ef444fe7" target="_blank" rel="noopener" data-i18n="formHandover">Заявка на сдачу автомобиля</a>
+    </div>
+  </div>
+</footer>
+
+<div class="quick-actions" id="quick-actions">
+  <div class="quick-actions__menu" id="quick-actions-menu">
+    <a class="quick-actions__item" href="https://forms.yandex.ru/cloud/6a60be43068ff0333cf34fc7" target="_blank" rel="noopener" data-i18n="formDeposit">Заявка на возврат депозита</a>
+    <a class="quick-actions__item" href="https://forms.yandex.ru/cloud/6a60bc7502848f2fd622f438" target="_blank" rel="noopener" data-i18n="formCompensation">Заявка на компенсацию</a>
+    <a class="quick-actions__item" href="https://forms.yandex.ru/cloud/6a60b6b084227c27ef444fe7" target="_blank" rel="noopener" data-i18n="formHandover">Заявка на сдачу автомобиля</a>
+    <a class="quick-actions__item quick-actions__item--bot" href="https://t.me/taxi_mania_bot" target="_blank" rel="noopener" data-i18n="btnTelegramBot">Написать в Telegram-бот</a>
+  </div>
+  <button class="fixed-tg-btn" id="quick-actions-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="quick-actions-menu" aria-label="Бот и онлайн-заявки" data-i18n-aria-label="quickActionsLabel">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21.8 4.6 3.4 11.5c-1 .4-1 1.7.1 2l4.4 1.4 1.7 5.2c.2.6.9.8 1.4.4l2.6-2.2 4.5 3.3c.6.5 1.6.1 1.8-.6l3.3-15.3c.2-1-.7-1.7-1.4-1.1ZM8.6 14l9.5-6.6c.3-.2.6.1.3.4l-7.9 7.4c-.3.3-.5.7-.6 1.1l-.3 2.3-1-4.6Z"/></svg>
+  </button>
+</div>
+
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Наверх" hidden data-i18n-aria-label="backToTopLabel">
+  <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5 4 13l1.4 1.4L11 8.8V19h2V8.8l5.6 5.6L20 13z"/></svg>
+</button>
+
+<nav class="floating-bottom-nav" aria-label="Разделы памятки">
+  <a class="nav-item" href="#columns" data-target="columns">
+    <svg class="nav-item__icon" aria-hidden="true" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.3"/><path d="M4.7 19.5c1.5-3.6 4.2-5.5 7.3-5.5s5.8 1.9 7.3 5.5"/></svg>
+    <span class="nav-label" data-i18n="navManagers">Менеджеры</span>
+  </a>
+  <a class="nav-item" href="#checklist" data-target="checklist">
+    <svg class="nav-item__icon" aria-hidden="true" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12.3l2.4 2.4L16 9"/></svg>
+    <span class="nav-label" data-i18n="navChecklist">Чеклист</span>
+  </a>
+  <a class="nav-item" href="#fines" data-target="fines">
+    <svg class="nav-item__icon" aria-hidden="true" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18L12 4Z"/><path d="M12 10.5v3.5"/><path d="M12 17h.01"/></svg>
+    <span class="nav-label" data-i18n="navFines">Штрафы</span>
+  </a>
+  <a class="nav-item" href="#inspection" data-target="inspection">
+    <svg class="nav-item__icon" aria-hidden="true" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+    <span class="nav-label" data-i18n="navInspection">Осмотр</span>
+  </a>
+  <a class="nav-item" href="#faq" data-target="faq">
+    <svg class="nav-item__icon" aria-hidden="true" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.3 2.4c-.9.4-1.4 1-1.4 2"/><path d="M12 16.7h.01"/></svg>
+    <span class="nav-label" data-i18n="navFaq">Вопросы</span>
+  </a>
+</nav>
+
+<script src="i18n.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
+<script src="data.js"></script>
+<script src="script.js" defer></script>
+</body>
+</html>
